@@ -8,3 +8,29 @@ spring:
     password: root
     username: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    lettuce:
+      pool:
+        max-idle: 10
+        max-active: 20
+        min-idle: 2
+        max-wait: 5000ms
+    database: 0
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl:  org.apache.ibatis.logging.stdout.StdOutImpl  #org.apache.ibatis.logging.log4j2.Log4j2Impl
+    cache-enabled: true
+    global-config:
+      # 配置逻辑删除
+      db-config:
+        logic-delete-field: deleted # 全局逻辑删除的实体字段名
+        logic-delete-value: 1
+        logic-not-delete-value: 0
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.springsercurity.domain
